@@ -47,19 +47,18 @@ echo 'echo -e "\e[94m             [accounts/options/server]            "' >> .ba
 echo 'echo -e "\e[0m                                                   "' >> .bashrc
 
 # Install WebServer
-apt-get -y install nginx
-
+#apt-get -y install nginx
 # WebServer Configuration
-cd
-rm /etc/nginx/sites-enabled/default
-rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/Dreyannz/AutoScriptVPS/master/Files/Nginx/nginx.conf"
-mkdir -p /home/vps/public_html
-echo "<h1><center>AutoScriptVPS by _Dreyannz_</center></h1>" > /home/vps/public_html/index.html
-echo "<h3><center>For More Info Visit My <a href="https://github.com/Dreyannz">Github Repositories</a></center><h3>" >> /home/vps/public_html/index.html
-echo "<h3><center>You Can Also Contact Me at <a href="https://www.facebook.com/Dreyannz">Facebook</a> and <a href="https://twitter.com/Dreyannz">Twitter</a></center></h3>" >> /home/vps/public_html/index.html
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/Dreyannz/AutoScriptVPS/master/Files/Nginx/vps.conf"
-service nginx restart
+#cd
+#rm /etc/nginx/sites-enabled/default
+#rm /etc/nginx/sites-available/default
+#wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/Dreyannz/AutoScriptVPS/master/Files/Nginx/nginx.conf"
+#mkdir -p /home/vps/public_html
+#echo "<h1><center>AutoScriptVPS by _Dreyannz_</center></h1>" > /home/vps/public_html/index.html
+#echo "<h3><center>For More Info Visit My <a href="https://github.com/Dreyannz">Github Repositories</a></center><h3>" >> /home/vps/public_html/index.html
+#echo "<h3><center>You Can Also Contact Me at <a href="https://www.facebook.com/Dreyannz">Facebook</a> and <a href="https://twitter.com/Dreyannz">Twitter</a></center></h3>" >> /home/vps/public_html/index.html
+#wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/Dreyannz/AutoScriptVPS/master/Files/Nginx/vps.conf"
+#service nginx restart
 
 # Install OpenVPN
 apt-get -y install openvpn easy-rsa openssl iptables
@@ -104,8 +103,8 @@ cd /etc/openvpn/
 wget "https://raw.githubusercontent.com/Dreyannz/AutoScriptVPS/master/Files/OpenVPN/server.conf"
 
 #Create OpenVPN Config
-cd
-mkdir -p /home/vps/public_html
+#cd
+#mkdir -p /home/vps/public_html
 cd /home/vps/public_html/
 wget "https://raw.githubusercontent.com/Dreyannz/AutoScriptVPS/master/Files/OpenVPN/client.ovpn"
 sed -i $MYIP2 /home/vps/public_html/client.ovpn;
@@ -151,17 +150,17 @@ screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300
 
 # SSH Configuration
 cd
-sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
-sed -i '/Port 22/a Port  81' /etc/ssh/sshd_config
+sed -i '/Port 22/a Port 145' /etc/ssh/sshd_config
+sed -i '/Port 22/a Port 144' /etc/ssh/sshd_config
 sed -i 's/Port 22/Port  22/g' /etc/ssh/sshd_config
 service ssh restart
 
 # Install Dropbear
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 82 -p 142"/g' /etc/default/dropbear
-echo "/bin/false" >> /etc/shells
+sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=442/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109 -p 143"/g' /etc/default/dropbear
+#echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 service ssh restart
 service dropbear restart
@@ -174,10 +173,10 @@ sed -i $MYIP2 /etc/squid3/squid.conf;
 service squid3 restart
 
 # Install WebMin
-cd
-apt-get -y install webmin
-sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
-service webmin restart
+#cd
+#apt-get -y install webmin
+#sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
+#service webmin restart
 
 # Install Stunnel
 apt-get -y install stunnel4
@@ -210,8 +209,8 @@ service ssh restart
 service dropbear restart
 
 # XML Parser
-cd
-apt-get -y --force-yes -f install libxml-parser-perl
+#cd
+#apt-get -y --force-yes -f install libxml-parser-perl
 
 # Install Screenfetch
 apt-get -y install lsb-release scrot
@@ -302,14 +301,14 @@ chmod +x speedtest
 
 # Finishing
 cd
-chown -R www-data:www-data /home/vps/public_html
-service nginx start
+#chown -R www-data:www-data /home/vps/public_html
+#service nginx start
 service openvpn restart
 service cron restart
 service ssh restart
 service dropbear restart
 service squid3 restart
-service webmin restart
+#service webmin restart
 rm -rf ~/.bash_history && history -c
 rm -f /root/AutoScriptVPS.sh
 echo "unset HISTFILE" >> /etc/profile
