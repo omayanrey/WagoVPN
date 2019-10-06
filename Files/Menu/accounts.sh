@@ -15,7 +15,7 @@ echo -e "\e[93m            [6]  User Extend"
 echo -e "\e[93m            [7]  User Delete"
 echo -e "\e[93m            [8]  User Lock"
 echo -e "\e[93m            [9]  User Unlock"
-echo -e "\e[93m            [10] Connections"
+echo -e "\e[93m            [10] Online List"
 echo -e "\e[93m            [11] Delete Expired"
 echo -e "\e[93m            [12] Locked List"
 echo -e "\e[93m            [x]  Exit"
@@ -73,7 +73,7 @@ case $Port in
 		;;
 		10)
 		clear
-		connections
+		online
 		exit
 		;;
 		11)
